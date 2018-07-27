@@ -8,7 +8,7 @@
 
 ## 3RD Party Libraries
 
-The app is using some 3rd Party libraries:
+The app is using some 3rd Party libraries and some swift file from other sources:
 
 * Alamofire - For networking
 * Kingfisher - For image handling

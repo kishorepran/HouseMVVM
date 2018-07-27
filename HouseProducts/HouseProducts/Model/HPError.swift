@@ -24,7 +24,7 @@ public protocol HPErrorCode {
     
     /// The error's localized description. Note that this is the fully resolved string, not just the key
     
-    /// This is because resolving the string down in MNBError would not work, when the error strings are
+    /// This is because resolving the string down in HPError would not work, when the error strings are
     
     /// defined the strings files of their own module/product. (readonly)
     
@@ -41,7 +41,7 @@ public protocol HPErrorCode {
 
 open class HPError: NSError {
     
-    /// The error code is an object that must implement MNBErrorCode
+    /// The error code is an object that must implement HPErrorCode
     /// Should be an enum but can be anything else as well!
     public var errorCode: HPErrorCode
     
@@ -59,7 +59,7 @@ open class HPError: NSError {
         fatalError("Not implemented")
     }
     
-    /// Creates an error instance using the given MNBErrorCode.
+    /// Creates an error instance using the given HPErrorCode.
     
     public init(errorCode: HPErrorCode) {
         self.errorCode = errorCode
