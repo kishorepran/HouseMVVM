@@ -39,12 +39,22 @@ class ProductSelectViewController: UIViewController {
         hud.show(in: self.view, animated: true)
         updateLikeUI()
     }
-
+    // MARK: - Update UI elements
+    // Occurs every time the user makes a choice
+    func updateLikeUI() {
+        labelLikeCount.text = "Items Liked \(viewModel.totalLikedItems) / \(viewModel.totalItems)"
+        buttonReview.isEnabled = viewModel.isAllItemsReviewed
+        if viewModel.isAllItemsReviewed {
+            showErrorAlert("All Items are selected.\nChoices can be reviewed now.")
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Button Actions
     @IBAction func buttonClickReview(_ sender : UIButton) {
         performSegue(withIdentifier: "Select-Review", sender: self)
     }
@@ -64,14 +74,6 @@ class ProductSelectViewController: UIViewController {
             updateLikeUI()
         }
     }
-    
-    func updateLikeUI() {
-        labelLikeCount.text = "Items Liked \(viewModel.totalLikedItems) / \(viewModel.totalItems)"
-        buttonReview.isEnabled = viewModel.isAllItemsReviewed
-        if viewModel.isAllItemsReviewed {
-            showErrorAlert("All Items are selected.\nChoices can be reviewed now.")
-        }
-    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -85,10 +87,7 @@ class ProductSelectViewController: UIViewController {
     
 }
 
-extension ProductSelectViewController: UICollectionViewDelegate {
-    
-}
-
+// MARK: - UICollectionView
 extension ProductSelectViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -115,7 +114,7 @@ extension ProductSelectViewController: UICollectionViewDataSource {
     }
 }
 
-
+// MARK: - ViewModelDelegate
 extension ProductSelectViewController : ViewModelDelegate {
     
     func viewModelDidUpdate(sender : HPViewModel) {

@@ -8,6 +8,7 @@
 
 import Foundation
 
+//User responses for product
 enum UserChoice : String {
     case liked
     case unliked
@@ -39,6 +40,7 @@ class Product : Codable {
     
     var choice = UserChoice.undetermined
     
+    //Finding the first available image from the list of media and presenting to user
     var imageMedia : Media? {
         let item = media?.first(where: { (item) -> Bool in
             item.mimeType == "image/png"
@@ -54,7 +56,7 @@ class Product : Codable {
     }
 }
 
-//For Array response
+//Generic structue that accepts a codable data type as array
 struct Results<Item : Codable> : Codable {
     let articles : [Item]?
     
@@ -63,7 +65,7 @@ struct Results<Item : Codable> : Codable {
     }
 }
 
-//For single response i.e. dictionary
+//Generic structue that accepts a codable data type as array embedded in a dictionary
 struct Response<Item : Codable> : Codable {
     let data : Results<Item>?
     

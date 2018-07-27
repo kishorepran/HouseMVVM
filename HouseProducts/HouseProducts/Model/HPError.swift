@@ -69,6 +69,7 @@ open class HPError: NSError {
     
 }
 
+/// Error class in case of networking  errors. Like no internet request time out etc.
 class MGServiceError: HPError {
     
     enum ErrorCode: Int, HPErrorCode {
@@ -123,6 +124,7 @@ class MGServiceError: HPError {
     }
 }
 
+/// Error class in case of error in server responses. E.G.: Blank JSON with 200 or error message embedded in server response.
 class MGServerResponseError: HPError {
     
     static let JsonParsing = MGServerResponseError.init(errorCode: ErrorCode.jsonParsingError)

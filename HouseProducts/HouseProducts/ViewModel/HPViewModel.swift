@@ -24,10 +24,12 @@ class HPViewModel: NSObject {
         }
     }
     
+    //List of total items
     var totalItems : Int {
         return products?.count ?? 0
     }
     
+    //Count for total liked items
     var totalLikedItems : Int {
         guard let  items = products else {return 0}
         let likedItems = items.filter { (item) -> Bool in
@@ -36,6 +38,7 @@ class HPViewModel: NSObject {
         return likedItems.count
     }
     
+    //Check if user reviwed all items
     var isAllItemsReviewed : Bool {
         guard let  items = products else {return false}
         let item = items.first { (element) -> Bool in
@@ -44,6 +47,7 @@ class HPViewModel: NSObject {
         return item == nil
     }
     
+    //Web service call
     func getProductsList() {
         
         dataManager.productList(success: { (data) in
